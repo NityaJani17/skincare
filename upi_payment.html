@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>UPI Payment</title>
+
+    <style>
+        .payment-form {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .payment-form label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .payment-form input,
+        .payment-form select,
+        .payment-form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .payment-form button {
+            background-color: #387c6d;
+            color: #fff;
+            cursor: pointer;
+        }
+        .order-confirmation-heading {
+            color: pink; 
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="skincaretips.html">Skincare Tips</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <h1>UPI Payment</h1>
+        <p>Complete your payment using UPI</p>
+    </header>
+    <main>
+        <form class="payment-form" action="order_confirmation.html" method="post" onsubmit="updateUPIId()">
+            <h2>UPI Information</h2>
+
+            <label for="paymentMethod">Select UPI Payment Method:</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+                <option value="googlePay">Google Pay</option>
+                <option value="paytm">Paytm</option>
+                <option value="bharatPay">BharatPay</option>
+            </select>
+        
+            <label for="upiId">UPI ID:</label>
+            <input type="text" id="upiId" name="upiId" required>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit" class="buy-button">Complete Payment</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2023 Skincare Hub</p>
+    </footer>
+
+    <script>
+        function updateUPIId() {
+            const upiIdField = document.getElementById('upiId');
+            const paymentMethodField = document.getElementById('paymentMethod');
+            const selectedPaymentMethod = paymentMethodField.value;
+
+            if (selectedPaymentMethod === 'googlePay') {
+                
+                upiIdField.value += '@googlepay';
+            } else if (selectedPaymentMethod === 'paytm') {
+                upiIdField.value += '@paytm';
+            } else if (selectedPaymentMethod === 'bharatPay') {
+                upiIdField.value += '@bharatpay';
+            }
+        }
+        
+    </script>
+</body>
+</html>

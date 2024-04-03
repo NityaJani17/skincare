@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Card Payment</title>
+
+    <style>
+        .payment-form {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .payment-form label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .payment-form input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .payment-form button {
+            background-color: #387c6d;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .order-confirmation-heading {
+            color: pink; 
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="skincaretips.html">Skincare Tips</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <h1>Card Payment</h1>
+        <p>Complete your payment using a Credit or Debit Card</p>
+    </header>
+    <main>
+        <form class="payment-form" onsubmit="return completePurchase()">
+            <h2>Card Information</h2>
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" required maxlength="19" required placeholder="**** **** **** ****">
+
+            <label for="cardHolderName">Cardholder Name:</label>
+            <input type="text" id="cardHolderName" name="cardHolderName" required>
+
+            <label for="expirationDate">Expiration Date:</label>
+            <input type="text" id="expirationDate" name="expirationDate" required pattern="^(0[1-9]|1[0-2])/\d{2}$" placeholder="MM/YY">
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required placeholder="123">
+
+            <button type="submit" class="buy-button">Complete Purchase</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2023 Skincare Hub</p>
+    </footer>
+
+    <script>
+      
+        const cardNumberInput = document.getElementById('cardNumber');
+        cardNumberInput.addEventListener('input', formatCardNumber);
+
+        function formatCardNumber() {
+            let cardNumber = cardNumberInput.value.replace(/\D/g, '');
+            
+            if (cardNumber.length > 16) {
+                cardNumber = cardNumber.substring(0, 16);
+            }
+
+            cardNumber = cardNumber.match(/.{1,4}/g).join(' ');
+
+            cardNumberInput.value = cardNumber;
+        }
+
+        function completePurchase() {
+            
+            window.location.href = 'order_confirmation.html'; 
+            return false; 
+        }
+    </script>
+</body>
+</html>

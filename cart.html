@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="skincaretips.html">Skincare Tips</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+        <h1>Shopping Cart</h1>
+        <p>Your Shopping Cart</p>
+    </header>
+    <main>
+        <div class="cart-items">
+            <!-- Cart items with product images -->
+        </div>
+        <button id="proceed-button" class="buy-button">Proceed</button>
+    </main>
+    <footer>
+        <p>&copy; 2023 Skincare Hub</p>
+    </footer>
+
+    <script>
+        // JavaScript to populate the shopping cart
+        document.addEventListener('DOMContentLoaded', function () {
+    const proceedButton = document.getElementById('proceed-button');
+    const cartItems = document.querySelector('.cart-items');
+    const cart = JSON.parse(localStorage.getItem('cart'));
+
+    if (cart && cart.length > 0) {
+        cart.forEach((item) => {
+            const cartItemDiv = document.createElement('div');
+            cartItemDiv.className = 'cart-item';
+            cartItemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-details">
+                    <h3>${item.name}</h3>
+                    <p><strong>Price:</strong> ${item.price}rs</p>
+                    <p><strong>Quantity:</strong> ${item.quantity}</p>
+                </div>
+            `;
+            cartItems.appendChild(cartItemDiv);
+        });
+
+        proceedButton.style.display = 'block';
+    } else {
+        proceedButton.style.display = 'none';
+    }
+});
+
+        // Handle "Proceed" button click (modify this as needed)
+        proceedButton.addEventListener('click', function () {
+            // Redirect to a checkout or payment page
+            window.location.href = 'checkout.html'; // Change this to your desired page
+        });
+    </script>
+</body>
+</html>
